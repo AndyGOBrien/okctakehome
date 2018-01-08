@@ -29,6 +29,6 @@ class SearchTabContract {
         fun displayUsername(username: String)
         fun displayPhoto(url: String)
         fun displayMatchPercentage(match: String)
-        fun displayLiked(isLiked: Boolean)
+        fun displayLiked(isLiked: Boolean, isSetColor: Boolean)
     }
 }

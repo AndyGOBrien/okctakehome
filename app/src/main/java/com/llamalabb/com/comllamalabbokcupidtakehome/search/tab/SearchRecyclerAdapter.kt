@@ -23,8 +23,7 @@ class SearchRecyclerAdapter(private val context: Context,
         presenter.onBindMatchItemAtPosition(position, holder)
         holder.cardView.setOnClickListener {
             presenter.handleSearchItemClick(position)
-            val color = ContextCompat.getColorStateList(context, R.color.liked)
-            holder.cardView.cardBackgroundColor = color
+            holder.cardView.cardBackgroundColor = holder.likedColor
         }
     }
 
@@ -38,6 +37,8 @@ class SearchRecyclerAdapter(private val context: Context,
     class SearchViewHolder(private val context: Context, view: View)
         : RecyclerView.ViewHolder(view), SearchTabContract.SearchItem{
 
+        val likedColor = ContextCompat.getColorStateList(context, R.color.liked)
+        val notLikedColor = ContextCompat.getColorStateList(context, R.color.cardview_light_background)
         val image: ImageView = view.findViewById(R.id.match_user_image)
         val username: TextView = view.findViewById(R.id.match_username_text)
         val quickInfo: TextView = view.findViewById(R.id.match_location_text)
@@ -60,11 +61,8 @@ class SearchRecyclerAdapter(private val context: Context,
             matchPercentage.text = String.format(context.getString(R.string.match_percent), match)
         }
 
-        override fun displayLiked(isLiked: Boolean) {
-            if(isLiked){
-                val likedColor = ContextCompat.getColorStateList(context, R.color.liked)
-                cardView.cardBackgroundColor = likedColor
-            }
+        override fun displayLiked(isLiked: Boolean, isSetColor: Boolean) {
+            cardView.cardBackgroundColor = if(isLiked&&isSetColor) likedColor else notLikedColor
         }
     }
 }

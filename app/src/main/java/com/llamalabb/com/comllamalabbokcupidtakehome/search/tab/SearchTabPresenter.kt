@@ -51,9 +51,11 @@ class SearchTabPresenter(val view: SearchTabContract.SearchTabView, private val 
             searchItem.displayUsername(username)
             searchItem.displayMatchPercentage(twoDigitMatchStr)
             searchItem.displayQuickInfo(quickInfo)
-            searchItem.displayLiked(list[position].liked)
+            searchItem.displayLiked(list[position].liked, isSetSearchItemColor())
         }
     }
+
+    private fun isSetSearchItemColor() = tab == TabPosition.SPECIAL_BLEND
 
     override fun handleSearchItemClick(index: Int) {
         matchedUsers[index].liked = true
