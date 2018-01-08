@@ -1,7 +1,8 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome.models
+package com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.MatchedPhotoInfo
 
 
 /**
@@ -14,7 +15,7 @@ data class MatchedUser(
 
         @SerializedName("relative")
         @Expose
-        val relative: Int,
+        val relative: Long,
 
         @SerializedName("last_login")
         @Expose
@@ -26,9 +27,9 @@ data class MatchedUser(
 
         @SerializedName("location")
         @Expose
-        val location: Map<String, String>,
+        val location: UserLocation,
 
-        @SerializedName("user_id")
+        @SerializedName("userid")
         @Expose
         val userId: String,
 
@@ -42,7 +43,7 @@ data class MatchedUser(
 
         @SerializedName("liked")
         @Expose
-        val liked: Boolean,
+        var liked: Boolean,
 
         @SerializedName("state_code")
         @Expose
@@ -99,7 +100,4 @@ data class MatchedUser(
         @SerializedName("orientation_tags")
         @Expose
         val orientationTags: List<String>
-
-
-){
-}
+)

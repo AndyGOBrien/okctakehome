@@ -3,10 +3,17 @@ package com.llamalabb.com.comllamalabbokcupidtakehome.search
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
+import kotlinx.android.synthetic.main.activity_search.*
 
-class SearchActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+class SearchActivity : AppCompatActivity(), SearchContract.SearchView{
+    override var presenter: SearchContract.Presenter = SearchPresenter(this)
+
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        supportActionBar?.elevation = 0f
+        gallery_view_pager.adapter = SearchPagerAdapter(this, supportFragmentManager)
+        search_tab_layout.setupWithViewPager(gallery_view_pager)
     }
 }

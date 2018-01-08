@@ -1,4 +1,4 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome.models
+package com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 data class MatchedPhotoInfo(
         @SerializedName("full_paths")
         @Expose
-        val fullPaths: Map<String, String>,
+        val fullPaths: FullPaths,
 
         @SerializedName("base_path")
         @Expose
@@ -17,7 +17,7 @@ data class MatchedPhotoInfo(
 
         @SerializedName("original_size")
         @Expose
-        val originalSize: Map<String, Int>,
+        val originalSize: OriginalSize,
 
         @SerializedName("ordinal")
         @Expose
@@ -29,7 +29,7 @@ data class MatchedPhotoInfo(
 
         @SerializedName("crop_rect")
         @Expose
-        val cropRect: Map<String, Int>,
+        val cropRect: CropRect,
 
         @SerializedName("caption")
         @Expose
@@ -37,5 +37,5 @@ data class MatchedPhotoInfo(
 
         @SerializedName("thumb_paths")
         @Expose
-        val thumbPaths: Map<String, String>
+        val thumbPaths: ThumbPaths
 )
