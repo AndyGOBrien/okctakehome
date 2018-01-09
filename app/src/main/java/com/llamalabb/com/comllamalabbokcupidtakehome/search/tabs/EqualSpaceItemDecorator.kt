@@ -1,4 +1,4 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome.search.tab
+package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs
 
 import android.content.Context
 import android.graphics.Rect

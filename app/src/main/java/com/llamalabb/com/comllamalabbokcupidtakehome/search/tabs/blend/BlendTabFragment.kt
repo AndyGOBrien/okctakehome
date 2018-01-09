@@ -1,4 +1,4 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome.search.tab
+package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,13 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
+import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.EqualSpaceItemDecorator
 import kotlinx.android.synthetic.main.fragment_search_tab.view.*
 
 /**
  * Created by andyg on 1/7/2018.
  */
-class SearchTabFragment : Fragment(), SearchTabContract.SearchTabView {
-    override lateinit var presenter: SearchTabContract.TabPresenter
+class BlendTabFragment : Fragment(), BlendTabContract.SearchTabView {
+    override lateinit var presenter: BlendTabContract.TabPresenter
     private var page: Int = 0
     private var title: String = ""
 
@@ -25,7 +26,7 @@ class SearchTabFragment : Fragment(), SearchTabContract.SearchTabView {
         super.onCreate(savedInstanceState)
         page = arguments.getInt("pageNum", 0)
         title = arguments.getString("title")
-        presenter = SearchTabPresenter(this, page)
+        presenter = BlendTabPresenter(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -40,7 +41,7 @@ class SearchTabFragment : Fragment(), SearchTabContract.SearchTabView {
         val itemDecoration = EqualSpaceItemDecorator(context, R.dimen.item_spacing)
         recyclerView.layoutManager = GridLayoutManager(context, span)
         recyclerView.addItemDecoration(itemDecoration)
-        recyclerView.adapter = SearchRecyclerAdapter(context, presenter)
+        recyclerView.adapter = BlendRecyclerAdapter(context, presenter)
     }
 
     override fun refreshList(){
@@ -48,8 +49,8 @@ class SearchTabFragment : Fragment(), SearchTabContract.SearchTabView {
     }
 
     companion object {
-        fun newInstance(pageNum: Int, title: String) : SearchTabFragment {
-            val galFrag = SearchTabFragment()
+        fun newInstance(pageNum: Int, title: String) : BlendTabFragment {
+            val galFrag = BlendTabFragment()
             val args = Bundle()
             args.putInt("pageNum", pageNum)
             args.putString("title", title)

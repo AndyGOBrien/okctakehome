@@ -1,5 +1,8 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.MatchedPhotoInfo
@@ -8,7 +11,19 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.Mat
 /**
  * Created by andyg on 1/7/2018.
  */
+@Entity(tableName = "LikedUsers")
 data class MatchedUser(
+        @PrimaryKey
+        @ColumnInfo(name="id")
+        @SerializedName("userid")
+        @Expose
+        val userId: String,
+
+        @ColumnInfo(name = "liked")
+        @SerializedName("liked")
+        @Expose
+        var liked: Boolean,
+
         @SerializedName("enemy")
         @Expose
         val enemy: Int,
@@ -29,10 +44,6 @@ data class MatchedUser(
         @Expose
         val location: UserLocation,
 
-        @SerializedName("userid")
-        @Expose
-        val userId: String,
-
         @SerializedName("match")
         @Expose
         val match: Int,
@@ -40,10 +51,6 @@ data class MatchedUser(
         @SerializedName("gender_tags")
         @Expose
         val genderTags: List<String>,
-
-        @SerializedName("liked")
-        @Expose
-        var liked: Boolean,
 
         @SerializedName("state_code")
         @Expose
