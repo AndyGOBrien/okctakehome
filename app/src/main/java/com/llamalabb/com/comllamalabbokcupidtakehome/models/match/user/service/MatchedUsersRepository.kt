@@ -26,7 +26,8 @@ object MatchedUsersRepository {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
-    fun getMatchedUsersApiService() = getMatchedUsersRetrofitInstance().create(MatchedUserApiService::class.java)
+    private fun getMatchedUsersApiService() = getMatchedUsersRetrofitInstance()
+            .create(MatchedUserApiService::class.java)
 
     fun getUsersFromApi() = getMatchedUsersApiService().getMatchedUsers()
             .subscribeOn(Schedulers.io())
