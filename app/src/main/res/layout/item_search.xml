@@ -13,7 +13,7 @@
         android:background="@android:color/transparent"
         android:paddingBottom="8dp">
 
-        <ImageView
+        <com.llamalabb.com.comllamalabbokcupidtakehome.SquareImageView
             android:id="@+id/match_user_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
