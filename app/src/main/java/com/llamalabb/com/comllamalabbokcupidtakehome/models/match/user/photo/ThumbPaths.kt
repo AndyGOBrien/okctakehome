@@ -11,14 +11,14 @@ import com.google.gson.annotations.SerializedName
 data class ThumbPaths(
         @SerializedName("large")
         @Expose
-        val large: String,
+        val large: String = "",
         @SerializedName("desktop_match")
         @Expose
-        val desktopMatch: String,
+        val desktopMatch: String = "",
         @SerializedName("small")
         @Expose
-        val small: String,
+        val small: String = "",
         @SerializedName("medium")
         @Expose
-        val medium: String
+        val medium: String = ""
 )

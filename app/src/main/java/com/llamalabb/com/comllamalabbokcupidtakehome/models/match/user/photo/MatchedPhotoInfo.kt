@@ -9,33 +9,33 @@ import com.google.gson.annotations.SerializedName
 data class MatchedPhotoInfo(
         @SerializedName("full_paths")
         @Expose
-        val fullPaths: FullPaths,
+        val fullPaths: FullPaths = FullPaths(),
 
         @SerializedName("base_path")
         @Expose
-        val basePath: String,
+        val basePath: String = "",
 
         @SerializedName("original_size")
         @Expose
-        val originalSize: OriginalSize,
+        val originalSize: OriginalSize = OriginalSize(),
 
         @SerializedName("ordinal")
         @Expose
-        val ordinal: Int,
+        val ordinal: Int = 0,
 
         @SerializedName("id")
         @Expose
-        val id: String,
+        val id: String = "",
 
         @SerializedName("crop_rect")
         @Expose
-        val cropRect: CropRect,
+        val cropRect: CropRect = CropRect(),
 
         @SerializedName("caption")
         @Expose
-        val caption: String,
+        val caption: String = "",
 
         @SerializedName("thumb_paths")
         @Expose
-        val thumbPaths: ThumbPaths
+        val thumbPaths: ThumbPaths = ThumbPaths()
 )

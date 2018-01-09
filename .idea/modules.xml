@@ -3,9 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/comllamalabbOkCupidTakeHome.iml" filepath="$PROJECT_DIR$/comllamalabbOkCupidTakeHome.iml" />
-      <module fileurl="file://$PROJECT_DIR$/okctakehome.iml" filepath="$PROJECT_DIR$/okctakehome.iml" />
+      <module fileurl="file://C:\Users\andyg\Documents\dev\android\projects\comllamalabbOkCupidTakeHome\okctakehome.iml" filepath="C:\Users\andyg\Documents\dev\android\projects\comllamalabbOkCupidTakeHome\okctakehome.iml" />
     </modules>
   </component>
 </project>

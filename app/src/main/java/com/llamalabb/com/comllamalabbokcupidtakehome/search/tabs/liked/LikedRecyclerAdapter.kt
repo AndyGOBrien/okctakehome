@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import com.llamalabb.com.comllamalabbokcupidtakehome.loadImage
+import com.llamalabb.com.comllamalabbokcupidtakehome.loadSquareImage
 
 /**
  * Created by andyg on 1/7/2018.
@@ -48,8 +48,8 @@ class LikedRecyclerAdapter(private val presenter: LikedTabContract.TabAdapterPre
             this.username.text = username
         }
 
-        override fun displayPhoto(url: String) {
-            image.loadImage(url)
+        override fun displayPhoto(url: String, x: Int, y: Int) {
+            image.loadSquareImage(url, x, y)
         }
 
         override fun displayMatchPercentage(match: String) {

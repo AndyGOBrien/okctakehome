@@ -3,6 +3,8 @@ package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend
 import com.llamalabb.com.comllamalabbokcupidtakehome.formatMatchPercent
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.service.MatchedUsersRepository
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by andyg on 1/7/2018.
@@ -11,7 +13,10 @@ class BlendTabPresenter(val view: BlendTabContract.SearchTabView)
     : BlendTabContract.TabPresenter {
 
     override fun onStart() {
-        MatchedUsersRepository.getUsersFromApi().subscribe{
+        MatchedUsersRepository.getUsersFromApi()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
             MatchedUsersRepository.users = it.data
             processMatchedUsers(MatchedUsersRepository.users)
         }
@@ -31,9 +36,9 @@ class BlendTabPresenter(val view: BlendTabContract.SearchTabView)
 
     private fun displaySearchItem(list: List<MatchedUser>, position: Int, searchItem: BlendTabContract.SearchItem){
         with(list[position]) {
-            val quickInfo = "$age • ${location.cityName}, ${location.stateCode}"
+            val quickInfo = "$age • ${location?.cityName}, ${location.stateCode}"
             val twoDigitMatchStr = match.formatMatchPercent()
-            searchItem.displayPhoto(photo.fullPaths.original)
+            searchItem.displayPhoto(photo.fullPaths.original, photo.cropRect.x, photo.cropRect.y)
             searchItem.displayUsername(username)
             searchItem.displayMatchPercentage(twoDigitMatchStr)
             searchItem.displayQuickInfo(quickInfo)

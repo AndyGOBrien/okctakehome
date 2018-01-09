@@ -9,22 +9,22 @@ import com.google.gson.annotations.SerializedName
 data class UserLocation(
     @SerializedName("country_code")
     @Expose
-    val countryCode: String,
+    val countryCode: String = "",
 
     @SerializedName("city_name")
     @Expose
-    val cityName: String,
+    val cityName: String = "",
 
     @SerializedName("country_name")
     @Expose
-    val countryName: String,
+    val countryName: String = "",
 
     @SerializedName("state_name")
     @Expose
-    val stateName: String,
+    val stateName: String = "",
 
     @SerializedName("state_code")
     @Expose
-    val stateCode: String
+    val stateCode: String = ""
 
 )

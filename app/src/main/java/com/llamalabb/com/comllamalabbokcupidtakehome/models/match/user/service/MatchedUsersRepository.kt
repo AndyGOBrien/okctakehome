@@ -30,8 +30,6 @@ object MatchedUsersRepository {
             .create(MatchedUserApiService::class.java)
 
     fun getUsersFromApi() = getMatchedUsersApiService().getMatchedUsers()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
 
     fun storeLikedUsersInDb(users: List<MatchedUser>){
         Observable.fromCallable {  }
@@ -39,8 +37,6 @@ object MatchedUsersRepository {
                 .observeOn(Schedulers.io())
                 .subscribe()
     }
-
-
 
 //    fun getLikedUsersFromDb(): Observable<List<MatchedUser>> {
 //

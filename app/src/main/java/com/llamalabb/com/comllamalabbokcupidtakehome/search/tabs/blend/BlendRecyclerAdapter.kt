@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import com.llamalabb.com.comllamalabbokcupidtakehome.loadImage
+import com.llamalabb.com.comllamalabbokcupidtakehome.loadSquareImage
 
 /**
  * Created by andyg on 1/7/2018.
@@ -37,8 +37,8 @@ class BlendRecyclerAdapter(private val context: Context,
     class SearchViewHolder(private val context: Context, view: View)
         : RecyclerView.ViewHolder(view), BlendTabContract.SearchItem {
 
-        val likedColor = ContextCompat.getColorStateList(context, R.color.liked)
-        val notLikedColor = ContextCompat.getColorStateList(context, R.color.cardview_light_background)
+        val likedColor = ContextCompat.getColorStateList(context, R.color.search_card_liked_background)
+        val notLikedColor = ContextCompat.getColorStateList(context, R.color.search_card_background)
         val image: ImageView = view.findViewById(R.id.match_user_image)
         val username: TextView = view.findViewById(R.id.match_username_text)
         val quickInfo: TextView = view.findViewById(R.id.match_location_text)
@@ -53,8 +53,8 @@ class BlendRecyclerAdapter(private val context: Context,
             this.username.text = username
         }
 
-        override fun displayPhoto(url: String) {
-            image.loadImage(url)
+        override fun displayPhoto(url: String, x: Int, y: Int) {
+            image.loadSquareImage(url, x, y)
         }
 
         override fun displayMatchPercentage(match: String) {

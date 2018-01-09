@@ -27,7 +27,7 @@ class LikedTabContract {
     interface SearchItem{
         fun displayQuickInfo(info: String)
         fun displayUsername(username: String)
-        fun displayPhoto(url: String)
+        fun displayPhoto(url: String, x: Int, y: Int)
         fun displayMatchPercentage(match: String)
     }
 }

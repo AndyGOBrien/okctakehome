@@ -27,13 +27,13 @@ class LikedTabFragment : Fragment(), LikedTabContract.LikedTabView {
         super.onCreate(savedInstanceState)
         page = arguments.getInt("pageNum", 0)
         title = arguments.getString("title")
-        presenter = LikedTabPresenter(this, page)
+        presenter = LikedTabPresenter(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_search_tab, container, false)
         recyclerView = view.search_recycler_view
-        presenter.onStart()
+        //presenter.onStart()
         return view
     }
 

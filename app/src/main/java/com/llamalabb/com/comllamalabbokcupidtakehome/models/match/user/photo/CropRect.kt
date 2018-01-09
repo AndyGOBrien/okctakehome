@@ -9,17 +9,17 @@ import com.google.gson.annotations.SerializedName
 data class CropRect(
         @SerializedName("height")
         @Expose
-        val height: Int,
+        val height: Int = 0,
 
         @SerializedName("y")
         @Expose
-        val y: Int,
+        val y: Int = 0,
 
         @SerializedName("width")
         @Expose
-        val width: Int,
+        val width: Int = 0,
 
         @SerializedName("x")
         @Expose
-        val x: Int
+        val x: Int = 0
 )

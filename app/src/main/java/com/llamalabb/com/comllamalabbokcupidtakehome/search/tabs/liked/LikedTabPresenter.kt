@@ -40,7 +40,7 @@ class LikedTabPresenter(val view: LikedTabContract.LikedTabView)
         with(list[position]) {
             val quickInfo = "$age • ${location.cityName}, ${location.stateCode}"
             val twoDigitMatchStr = match.formatMatchPercent()
-            searchItem.displayPhoto(photo.fullPaths.original)
+            searchItem.displayPhoto(photo.fullPaths.original, photo.cropRect.x, photo.cropRect.y)
             searchItem.displayUsername(username)
             searchItem.displayMatchPercentage(twoDigitMatchStr)
             searchItem.displayQuickInfo(quickInfo)
