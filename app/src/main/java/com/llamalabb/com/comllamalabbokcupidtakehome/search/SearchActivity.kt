@@ -11,6 +11,7 @@ class SearchActivity : AppCompatActivity(), SearchContract.SearchView{
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
+        supportActionBar?.title = getString(R.string.search_title)
         setContentView(R.layout.activity_search)
         supportActionBar?.elevation = 0f
         gallery_view_pager.adapter = SearchPagerAdapter(this, supportFragmentManager)

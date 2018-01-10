@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
+        app:tabMaxWidth="0dp"
         app:tabGravity="fill"
         app:tabIndicatorColor="@android:color/white"
         app:tabMode="fixed"
