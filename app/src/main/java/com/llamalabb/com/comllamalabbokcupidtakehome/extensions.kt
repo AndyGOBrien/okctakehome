@@ -8,7 +8,9 @@ import android.widget.ImageView
 fun ImageView.loadSquareImage(url : String, x: Int,y: Int) {
     GlideApp.with(context)
             .load(url)
-            .transform(CropBitmapDimensions(x, y))
+            //transformation only works on first draw. landscape gets cropped incorrectly.
+            //most likely need to cache original image first then crop on landscape change
+            //.transform(CropBitmapDimensions(x, y))
             .into(this)
 }
 
