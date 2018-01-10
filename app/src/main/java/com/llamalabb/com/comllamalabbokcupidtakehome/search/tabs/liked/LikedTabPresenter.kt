@@ -14,8 +14,8 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.liked.LikedTabC
 class LikedTabPresenter(val view: LikedTabContract.LikedTabView)
     : LikedTabContract.TabPresenter {
 
-    val MAX_INDEX_IN_VIEW = 6
-    var likedUsers = emptyList<MatchedUser>()
+    private val MAX_INDEX_IN_VIEW = 6
+    private var likedUsers = emptyList<MatchedUser>()
 
     override fun onStart() {
         view.showSearchList()
@@ -29,7 +29,14 @@ class LikedTabPresenter(val view: LikedTabContract.LikedTabView)
         MatchedUsersRepository.usersCache.forEach {
             if(MatchedUsersRepository.likedUsersCache.contains(it.userId)) tempList.add(it)
         }
-        likedUsers = tempList.sortedWith(compareByDescending{it.match})
+
+        likedUsers = if (tempList.size <= MAX_INDEX_IN_VIEW) {
+            tempList.sortedWith(compareByDescending { it.match })
+        } else {
+            tempList.sortedWith(compareByDescending { it.match })
+                    .subList(0, MAX_INDEX_IN_VIEW)
+        }
+
         view.refreshList()
     }
 
