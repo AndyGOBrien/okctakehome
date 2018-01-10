@@ -5,10 +5,10 @@ import android.widget.ImageView
 /**
  * Created by andyg on 1/7/2018.
  */
-fun ImageView.loadImage(url : String) {
+fun ImageView.loadSquareImage(url : String, x: Int,y: Int) {
     GlideApp.with(context)
             .load(url)
-            .fitCenter()
+            .transform(CropBitmapDimensions(x, y))
             .into(this)
 }
 

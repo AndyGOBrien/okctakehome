@@ -1,7 +1,6 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome.search.tab
+package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.liked
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,20 +9,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import com.llamalabb.com.comllamalabbokcupidtakehome.loadImage
+import com.llamalabb.com.comllamalabbokcupidtakehome.loadSquareImage
 
 /**
  * Created by andyg on 1/7/2018.
  */
-class SearchRecyclerAdapter(private val context: Context,
-                            private val presenter: SearchTabContract.TabAdapterPresenter)
-    : RecyclerView.Adapter<SearchRecyclerAdapter.SearchViewHolder>() {
+class LikedRecyclerAdapter(private val presenter: LikedTabContract.TabAdapterPresenter)
+    : RecyclerView.Adapter<LikedRecyclerAdapter.SearchViewHolder>() {
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         presenter.onBindMatchItemAtPosition(position, holder)
         holder.cardView.setOnClickListener {
             presenter.handleSearchItemClick(position)
-            holder.cardView.cardBackgroundColor = holder.likedColor
         }
     }
 
@@ -35,10 +32,8 @@ class SearchRecyclerAdapter(private val context: Context,
     override fun getItemCount(): Int = presenter.getSearchItemCount()
 
     class SearchViewHolder(private val context: Context, view: View)
-        : RecyclerView.ViewHolder(view), SearchTabContract.SearchItem{
+        : RecyclerView.ViewHolder(view), LikedTabContract.SearchItem {
 
-        val likedColor = ContextCompat.getColorStateList(context, R.color.liked)
-        val notLikedColor = ContextCompat.getColorStateList(context, R.color.cardview_light_background)
         val image: ImageView = view.findViewById(R.id.match_user_image)
         val username: TextView = view.findViewById(R.id.match_username_text)
         val quickInfo: TextView = view.findViewById(R.id.match_location_text)
@@ -53,16 +48,13 @@ class SearchRecyclerAdapter(private val context: Context,
             this.username.text = username
         }
 
-        override fun displayPhoto(url: String) {
-            image.loadImage(url)
+        override fun displayPhoto(url: String, x: Int, y: Int) {
+            image.loadSquareImage(url, x, y)
         }
 
         override fun displayMatchPercentage(match: String) {
             matchPercentage.text = String.format(context.getString(R.string.match_percent), match)
         }
 
-        override fun displayLiked(isLiked: Boolean, isSetColor: Boolean) {
-            cardView.cardBackgroundColor = if(isLiked&&isSetColor) likedColor else notLikedColor
-        }
     }
 }

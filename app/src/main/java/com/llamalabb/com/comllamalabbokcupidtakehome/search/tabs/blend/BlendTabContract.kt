@@ -1,4 +1,4 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome.search.tab
+package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend
 
 import com.llamalabb.com.comllamalabbokcupidtakehome.BasePresenter
 import com.llamalabb.com.comllamalabbokcupidtakehome.BaseView
@@ -8,13 +8,13 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUs
 /**
  * Created by andyg on 1/7/2018.
  */
-class SearchTabContract {
-    interface SearchTabView: BaseView<SearchTabContract.TabPresenter>{
-        fun showSearchList(matchedUsers: List<MatchedUser>)
+class BlendTabContract {
+    interface SearchTabView: BaseView<TabPresenter>{
+        fun showSearchList()
         fun refreshList()
     }
 
-    interface TabPresenter: BasePresenter, TabAdapterPresenter{
+    interface TabPresenter: BasePresenter, TabAdapterPresenter {
 
     }
 
@@ -27,8 +27,8 @@ class SearchTabContract {
     interface SearchItem{
         fun displayQuickInfo(info: String)
         fun displayUsername(username: String)
-        fun displayPhoto(url: String)
+        fun displayPhoto(url: String, x: Int, y: Int)
         fun displayMatchPercentage(match: String)
-        fun displayLiked(isLiked: Boolean, isSetColor: Boolean)
+        fun displayLiked(isLiked: Boolean)
     }
 }

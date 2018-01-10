@@ -11,17 +11,17 @@ import com.google.gson.annotations.Expose
 data class FullPaths(
     @SerializedName("large")
     @Expose
-    val large: String,
+    val large: String = "",
 
     @SerializedName("small")
     @Expose
-    val small: String,
+    val small: String = "",
 
     @SerializedName("medium")
     @Expose
-    val medium: String,
+    val medium: String = "",
 
     @SerializedName("original")
     @Expose
-    val original: String
+    val original: String = ""
 )

@@ -1,5 +1,9 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.MatchedPhotoInfo
@@ -8,96 +12,121 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.Mat
 /**
  * Created by andyg on 1/7/2018.
  */
+@Entity(tableName = "LikedUsers")
 data class MatchedUser(
-        @SerializedName("enemy")
-        @Expose
-        val enemy: Int,
-
-        @SerializedName("relative")
-        @Expose
-        val relative: Long,
-
-        @SerializedName("last_login")
-        @Expose
-        val lastLogin: Long,
-
-        @SerializedName("gender")
-        @Expose
-        val gender: Int,
-
-        @SerializedName("location")
-        @Expose
-        val location: UserLocation,
-
+        @PrimaryKey
+        @ColumnInfo(name="userId")
         @SerializedName("userid")
         @Expose
-        val userId: String,
+        var userId: String = "",
 
-        @SerializedName("match")
-        @Expose
-        val match: Int,
-
-        @SerializedName("gender_tags")
-        @Expose
-        val genderTags: List<String>,
-
+        @ColumnInfo(name = "liked")
         @SerializedName("liked")
         @Expose
-        var liked: Boolean,
+        var liked: Boolean = false,
 
+        @Ignore
+        @SerializedName("enemy")
+        @Expose
+        var enemy: Int = 0,
+
+        @Ignore
+        @SerializedName("relative")
+        @Expose
+        var relative: Long = 0,
+
+        @Ignore
+        @SerializedName("last_login")
+        @Expose
+        var lastLogin: Long = 0,
+
+        @Ignore
+        @SerializedName("gender")
+        @Expose
+        var gender: Int = 0,
+
+        @Ignore
+        @SerializedName("location")
+        @Expose
+        var location: UserLocation = UserLocation(),
+
+        @Ignore
+        @SerializedName("match")
+        @Expose
+        var match: Int = 0,
+
+        @Ignore
+        @SerializedName("gender_tags")
+        @Expose
+        var genderTags: List<String> = emptyList(),
+
+        @Ignore
         @SerializedName("state_code")
         @Expose
-        val stateCode: String,
+        var stateCode: String = "",
 
+        @Ignore
         @SerializedName("orientation")
         @Expose
-        val orientation: Int,
+        var orientation: Int = 0,
 
+        @Ignore
         @SerializedName("country_name")
         @Expose
-        val countryName: String,
+        var countryName: String = "",
 
+        @Ignore
         @SerializedName("photo")
         @Expose
-        val photo: MatchedPhotoInfo,
+        var photo: MatchedPhotoInfo = MatchedPhotoInfo(),
 
+        @Ignore
         @SerializedName("state_name")
         @Expose
-        val stateName: String,
+        var stateName: String = "",
 
+        @Ignore
         @SerializedName("age")
         @Expose
-        val age: Int,
+        var age: Int = 0,
 
+        @Ignore
         @SerializedName("country_code")
         @Expose
-        val countryCode: String,
+        var countryCode: String = "",
 
+        @Ignore
         @SerializedName("friend")
         @Expose
-        val friend: Int,
+        var friend: Int = 0,
 
+        @Ignore
         @SerializedName("is_online")
         @Expose
-        val isOnline: Int,
+        var isOnline: Int = 0,
 
+        @Ignore
         @SerializedName("username")
         @Expose
-        val username: String,
+        var username: String = "",
 
+        @Ignore
         @SerializedName("city_name")
         @Expose
-        val cityName: String,
+        var cityName: String = "",
 
+        @Ignore
         @SerializedName("stoplight_color")
         @Expose
-        val stopLightColor: String,
+        var stopLightColor: String = "",
 
+        @Ignore
         @SerializedName("last_contact_time")
         @Expose
-        val lastContactTime: List<Long>,
+        var lastContactTime: List<Long> = emptyList(),
 
+        @Ignore
         @SerializedName("orientation_tags")
         @Expose
-        val orientationTags: List<String>
+        var orientationTags: List<String> = emptyList()
 )

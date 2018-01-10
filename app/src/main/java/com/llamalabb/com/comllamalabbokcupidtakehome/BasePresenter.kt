@@ -5,4 +5,5 @@ package com.llamalabb.com.comllamalabbokcupidtakehome
  */
 interface BasePresenter {
     fun onStart()
+    fun onDestroy()
 }

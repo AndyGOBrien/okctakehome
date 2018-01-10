@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#557CD2</color>
+    <color name="colorPrimaryDark">#3B61C0</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="liked">#fffde7</color>
+    <color name="search_card_liked_background">#FFFEB2</color>
+    <color name="search_card_background">#FDFDFD</color>
+    <color name="tab_not_focused">#AABEE6</color>
+    <color name="background">#E9EBF0</color>
+    <color name="search_card_mini_detail_text">#989DA5</color>
+    <color name="search_card_match_text">#303237</color>
+    <color name="search_card_username_text">#202020</color>
 </resources>

@@ -9,9 +9,9 @@ import com.google.gson.annotations.SerializedName
 data class OriginalSize(
         @SerializedName("width")
         @Expose
-        val width: Int,
+        val width: Int = 0,
 
         @SerializedName("height")
         @Expose
-        val height: Int
+        val height: Int = 0
 )
