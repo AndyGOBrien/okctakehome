@@ -16,6 +16,12 @@ class MyApp : Application() {
     }
     override fun onCreate() {
         super.onCreate()
-        database = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "cleverDatabaseName").build()
+        createDatabase()
     }
+
+    private fun createDatabase(){
+        database = Room.databaseBuilder(applicationContext,
+                AppDatabase::class.java, "AppDatabase").build()
+    }
+
 }

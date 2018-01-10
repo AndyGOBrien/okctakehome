@@ -15,15 +15,21 @@ class SearchPresenter(val view: SearchContract.SearchView) : SearchContract.Pres
                 .unsubscribeOn(Schedulers.io())
     }
 
-    override fun onStart() {
-        MatchedUsersRepository.getUsersFromApi()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    MatchedUsersRepository.usersCache.clear()
-                    MatchedUsersRepository.usersCache.addAll(it.data)
-                    Bus.send(BusEvent.UpdateBlendTab)
-                    Bus.send(BusEvent.UpdateLikedTab)
-                }
+    override fun onStart() {}
+
+    override fun getUserDataFromApi(isConnected: Boolean) {
+        if (isConnected) {
+            MatchedUsersRepository.getUsersFromApi()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        MatchedUsersRepository.usersCache.clear()
+                        MatchedUsersRepository.usersCache.addAll(it.data)
+                        Bus.send(BusEvent.UpdateBlendTab)
+                        Bus.send(BusEvent.UpdateLikedTab)
+                    }
+        } else {
+            view.showNotConnected()
+        }
     }
 }

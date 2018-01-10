@@ -1,5 +1,4 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome
-
 import android.widget.ImageView
 
 /**
