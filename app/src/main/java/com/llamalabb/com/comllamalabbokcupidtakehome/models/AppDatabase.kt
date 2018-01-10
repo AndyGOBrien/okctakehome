@@ -15,7 +15,6 @@ abstract class AppDatabase : RoomDatabase() {
 
 @Dao
 interface UserDao {
-
     @Query("SELECT * FROM LikedUsers")
     fun getUsers(): Single<List<MatchedUser>>
 

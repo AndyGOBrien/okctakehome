@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OKC Take HOME</string>
+    <string name="app_name">OKC Take Home</string>
     <string name="search_title">Search</string>
     <string name="search_tab_special_blend">SPECIAL BLEND</string>
     <string name="search_tab_match_percentage">MATCH %</string>

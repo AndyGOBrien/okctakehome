@@ -36,7 +36,7 @@ class BlendTabFragment : Fragment(), BlendTabContract.SearchTabView {
         return view
     }
 
-    override fun showSearchList(matchedUsers: List<MatchedUser>){
+    override fun showSearchList(){
         val span = resources.getInteger(R.integer.gallery_columns)
         val itemDecoration = EqualSpaceItemDecorator(context, R.dimen.item_spacing)
         recyclerView.layoutManager = GridLayoutManager(context, span)
@@ -57,5 +57,10 @@ class BlendTabFragment : Fragment(), BlendTabContract.SearchTabView {
             galFrag.arguments = args
             return galFrag
         }
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

@@ -10,7 +10,7 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUs
  */
 class BlendTabContract {
     interface SearchTabView: BaseView<TabPresenter>{
-        fun showSearchList(matchedUsers: List<MatchedUser>)
+        fun showSearchList()
         fun refreshList()
     }
 

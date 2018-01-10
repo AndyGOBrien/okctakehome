@@ -4,9 +4,8 @@ import android.content.Context
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.support.v7.widget.GridLayoutManager
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import android.R.attr.spacing
+
 
 
 

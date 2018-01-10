@@ -1,10 +1,10 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend
 
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.llamalabb.com.comllamalabbokcupidtakehome.formatMatchPercent
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.service.MatchedUsersRepository
-import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.llamalabb.com.comllamalabbokcupidtakehome.search.BusEvent
 
 /**
  * Created by andyg on 1/7/2018.
@@ -12,50 +12,36 @@ import io.reactivex.schedulers.Schedulers
 class BlendTabPresenter(val view: BlendTabContract.SearchTabView)
     : BlendTabContract.TabPresenter {
 
+
     override fun onStart() {
-        MatchedUsersRepository.getUsersFromApi()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{
-            MatchedUsersRepository.users = it.data
-            processMatchedUsers(MatchedUsersRepository.users)
-        }
-    }
-
-    private fun processMatchedUsers(matchedUsers: List<MatchedUser>){
-            sortSpecialBlend(matchedUsers)
-    }
-
-    private fun sortSpecialBlend(matchedUsers: List<MatchedUser>){
-        view.showSearchList(matchedUsers)
+        view.showSearchList()
+        Bus.observe<BusEvent.UpdateBlendTab>()
+                .subscribe{view.refreshList()}
+                .registerInBus(this)
     }
 
     override fun onBindMatchItemAtPosition(position: Int, searchItem: BlendTabContract.SearchItem) {
-            displaySearchItem(MatchedUsersRepository.users, position, searchItem)
-    }
-
-    private fun displaySearchItem(list: List<MatchedUser>, position: Int, searchItem: BlendTabContract.SearchItem){
-        with(list[position]) {
-            val quickInfo = "$age • ${location?.cityName}, ${location.stateCode}"
+        with(MatchedUsersRepository.usersCache[position]) {
+            val isLiked = MatchedUsersRepository.likedUsersCache.contains(userId)
+            val quickInfo = "$age • ${location.cityName}, ${location.stateCode}"
             val twoDigitMatchStr = match.formatMatchPercent()
             searchItem.displayPhoto(photo.fullPaths.original, photo.cropRect.x, photo.cropRect.y)
             searchItem.displayUsername(username)
             searchItem.displayMatchPercentage(twoDigitMatchStr)
             searchItem.displayQuickInfo(quickInfo)
-            searchItem.displayLiked(list[position].liked)
+            searchItem.displayLiked(isLiked)
         }
     }
 
     override fun handleSearchItemClick(index: Int) {
-        MatchedUsersRepository.users[index].liked = true
+        MatchedUsersRepository.usersCache[index].liked = true
+        MatchedUsersRepository.saveLikedUser(MatchedUsersRepository.usersCache[index])
+        Bus.send(BusEvent.UpdateLikedTab)
     }
 
-    private fun getLikedUsers(): List<MatchedUser>{
-        val likedUsers = ArrayList<MatchedUser>()
-        MatchedUsersRepository.users.forEach { if(it.liked) likedUsers.add(it) }
-        return likedUsers
+    override fun getSearchItemCount(): Int = MatchedUsersRepository.usersCache.size
+
+    override fun onDestroy() {
+        Bus.unregister(this)
     }
-
-    override fun getSearchItemCount(): Int = MatchedUsersRepository.users.size
-
 }

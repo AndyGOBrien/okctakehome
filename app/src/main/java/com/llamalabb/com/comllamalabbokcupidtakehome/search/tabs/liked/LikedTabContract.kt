@@ -10,7 +10,7 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUs
  */
 class LikedTabContract {
     interface LikedTabView : BaseView<TabPresenter>{
-        fun showSearchList(matchedUsers: List<MatchedUser>)
+        fun showSearchList()
         fun refreshList()
     }
 

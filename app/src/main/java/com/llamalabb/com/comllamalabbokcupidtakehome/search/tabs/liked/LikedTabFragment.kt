@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.EqualSpaceItemDecorator
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend.LikedTabPresenter
 import kotlinx.android.synthetic.main.fragment_search_tab.view.*
@@ -33,11 +32,11 @@ class LikedTabFragment : Fragment(), LikedTabContract.LikedTabView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_search_tab, container, false)
         recyclerView = view.search_recycler_view
-        //presenter.onStart()
+        presenter.onStart()
         return view
     }
 
-    override fun showSearchList(matchedUsers: List<MatchedUser>){
+    override fun showSearchList(){
         val span = resources.getInteger(R.integer.gallery_columns)
         val itemDecoration = EqualSpaceItemDecorator(context, R.dimen.item_spacing)
         recyclerView.layoutManager = GridLayoutManager(context, span)
@@ -58,5 +57,10 @@ class LikedTabFragment : Fragment(), LikedTabContract.LikedTabView {
             galFrag.arguments = args
             return galFrag
         }
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

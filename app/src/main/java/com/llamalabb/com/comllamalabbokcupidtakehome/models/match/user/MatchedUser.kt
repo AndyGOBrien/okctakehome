@@ -16,7 +16,7 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.Mat
 data class MatchedUser(
         @PrimaryKey
         @ColumnInfo(name="userId")
-        @SerializedName("userId")
+        @SerializedName("userid")
         @Expose
         var userId: String = "",
 

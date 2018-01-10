@@ -1,8 +1,8 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.service
 
+import com.llamalabb.com.comllamalabbokcupidtakehome.MyApp
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -13,9 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object MatchedUsersRepository {
 
-    lateinit var users: List<MatchedUser>
-    val likedUsers = ArrayList<String>()
+    var usersCache = ArrayList<MatchedUser>()
+    var likedUsersCache = HashMap<String, Boolean>()
+    private val userDao = MyApp.database.userDao()
 
+    init{
+        updateLikedUserCache()
+    }
 
     private val MATCHED_USERS_EXAMPLE_URL = "https://www.okcupid.com"
 
@@ -32,13 +36,27 @@ object MatchedUsersRepository {
     fun getUsersFromApi() = getMatchedUsersApiService().getMatchedUsers()
 
     fun storeLikedUsersInDb(users: List<MatchedUser>){
-        Observable.fromCallable {  }
+        Observable.fromCallable { userDao.insertAll(users) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe()
     }
 
-//    fun getLikedUsersFromDb(): Observable<List<MatchedUser>> {
-//
-//    }
+    fun getLikedUsersFromDb() = userDao.getUsers().filter{ it.isNotEmpty() }
+            .toObservable()
+
+    fun saveLikedUser(user: MatchedUser){
+        likedUsersCache.put(user.userId, user.liked)
+        Observable.fromCallable { userDao.insert(user) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe()
+    }
+
+    private fun updateLikedUserCache(){
+        getLikedUsersFromDb()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe{ it.forEach { likedUsersCache.put(it.userId, it.liked) } }
+    }
 }

@@ -54,4 +54,6 @@ dependencies {
     compile 'android.arch.persistence.room:runtime:1.0.0'
     compile 'android.arch.persistence.room:rxjava2:1.0.0'
     kapt 'android.arch.persistence.room:compiler:1.0.0'
+
+    compile 'com.eightbitlab:rxbus:1.0.2'
 }

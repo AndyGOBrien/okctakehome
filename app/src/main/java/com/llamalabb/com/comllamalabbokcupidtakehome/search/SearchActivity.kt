@@ -15,5 +15,11 @@ class SearchActivity : AppCompatActivity(), SearchContract.SearchView{
         supportActionBar?.elevation = 0f
         gallery_view_pager.adapter = SearchPagerAdapter(this, supportFragmentManager)
         search_tab_layout.setupWithViewPager(gallery_view_pager)
+        presenter.onStart()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

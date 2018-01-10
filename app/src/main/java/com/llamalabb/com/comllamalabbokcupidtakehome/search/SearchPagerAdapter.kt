@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import com.llamalabb.com.comllamalabbokcupidtakehome.models.TabPosition
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend.BlendTabFragment
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.liked.LikedTabFragment
 
@@ -15,7 +14,11 @@ import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.liked.LikedTabF
 class SearchPagerAdapter(private val context: Context, fragmentManager: FragmentManager)
     : FragmentPagerAdapter(fragmentManager) {
 
-    private val NUM_ITEMS = 2
+    companion object TabPosition{
+        private val NUM_ITEMS = 2
+        val SPECIAL_BLEND = 0
+        val MATCH_PERCENT = 1
+    }
 
     override fun getItem(position: Int): Fragment? {
         return when(position){
