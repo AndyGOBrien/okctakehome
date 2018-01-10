@@ -1,15 +1,14 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend
 
-import com.llamalabb.com.comllamalabbokcupidtakehome.BasePresenter
-import com.llamalabb.com.comllamalabbokcupidtakehome.BaseView
-import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
+import com.llamalabb.com.comllamalabbokcupidtakehome.base.BasePresenter
+import com.llamalabb.com.comllamalabbokcupidtakehome.base.BaseView
 
 
 /**
  * Created by andyg on 1/7/2018.
  */
 class BlendTabContract {
-    interface SearchTabView: BaseView<TabPresenter>{
+    interface SearchTabView: BaseView<TabPresenter> {
         fun showSearchList()
         fun refreshList()
     }

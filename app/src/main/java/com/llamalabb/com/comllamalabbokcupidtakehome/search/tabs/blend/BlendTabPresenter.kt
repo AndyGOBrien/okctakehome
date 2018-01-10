@@ -2,7 +2,6 @@ package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend
 
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
-import com.llamalabb.com.comllamalabbokcupidtakehome.formatMatchPercent
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.service.MatchedUsersRepository
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.BusEvent
 
@@ -19,6 +18,8 @@ class BlendTabPresenter(val view: BlendTabContract.SearchTabView)
                 .subscribe{view.refreshList()}
                 .registerInBus(this)
     }
+
+    fun Int.formatMatchPercent() = "%.0f".format(this.toDouble()*.01)
 
     override fun onBindMatchItemAtPosition(position: Int, searchItem: BlendTabContract.SearchItem) {
         with(MatchedUsersRepository.usersCache[position]) {

@@ -1,7 +1,7 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.search
 
-import com.llamalabb.com.comllamalabbokcupidtakehome.BasePresenter
-import com.llamalabb.com.comllamalabbokcupidtakehome.BaseView
+import com.llamalabb.com.comllamalabbokcupidtakehome.base.BasePresenter
+import com.llamalabb.com.comllamalabbokcupidtakehome.base.BaseView
 
 /**
  * Created by andyg on 1/7/2018.

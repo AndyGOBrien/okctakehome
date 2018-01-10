@@ -1,4 +1,4 @@
-package com.llamalabb.com.comllamalabbokcupidtakehome
+package com.llamalabb.com.comllamalabbokcupidtakehome.base
 
 /**
  * Created by andyg on 1/7/2018.

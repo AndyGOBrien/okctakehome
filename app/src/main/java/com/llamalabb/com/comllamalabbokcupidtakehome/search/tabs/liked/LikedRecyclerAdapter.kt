@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
-import com.llamalabb.com.comllamalabbokcupidtakehome.loadSquareImage
+import com.llamalabb.com.comllamalabbokcupidtakehome.loadImage
+import kotlinx.android.synthetic.main.item_search.view.*
 
 /**
  * Created by andyg on 1/7/2018.
@@ -34,11 +35,11 @@ class LikedRecyclerAdapter(private val presenter: LikedTabContract.TabAdapterPre
     class SearchViewHolder(private val context: Context, view: View)
         : RecyclerView.ViewHolder(view), LikedTabContract.SearchItem {
 
-        val image: ImageView = view.findViewById(R.id.match_user_image)
-        val username: TextView = view.findViewById(R.id.match_username_text)
-        val quickInfo: TextView = view.findViewById(R.id.match_location_text)
-        val matchPercentage: TextView = view.findViewById(R.id.match_percentage_text)
-        val cardView: CardView = view.findViewById(R.id.search_item_card_view)
+        val image: ImageView = view.match_user_image
+        val username: TextView = view.match_username_text
+        val quickInfo: TextView = view.match_quick_info_text
+        val matchPercentage: TextView = view.match_percentage_text
+        val cardView: CardView = view.search_item_card_view
 
         override fun displayQuickInfo(info: String) {
             quickInfo.text = info
@@ -49,7 +50,7 @@ class LikedRecyclerAdapter(private val presenter: LikedTabContract.TabAdapterPre
         }
 
         override fun displayPhoto(url: String, x: Int, y: Int) {
-            image.loadSquareImage(url, x, y)
+            image.loadImage(url)
         }
 
         override fun displayMatchPercentage(match: String) {

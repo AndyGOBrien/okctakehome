@@ -14,12 +14,13 @@
         android:background="@android:color/transparent"
         android:paddingBottom="12dp">
 
-        <com.llamalabb.com.comllamalabbokcupidtakehome.SquareImageView
+        <ImageView
             android:id="@+id/match_user_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:elevation="0dp"
             android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +41,7 @@
             app:layout_constraintTop_toBottomOf="@+id/match_user_image" />
 
         <TextView
-            android:id="@+id/match_location_text"
+            android:id="@+id/match_quick_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -64,7 +65,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/match_location_text" />
+            app:layout_constraintTop_toBottomOf="@+id/match_quick_info_text" />
 
     </android.support.constraint.ConstraintLayout>
 
