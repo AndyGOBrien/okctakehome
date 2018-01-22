@@ -23,4 +23,7 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(users: List<MatchedUser>)
+
+    @Delete
+    fun deleteUser(user: MatchedUser)
 }

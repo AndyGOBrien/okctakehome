@@ -2,6 +2,7 @@ package com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created by andyg on 1/7/2018.
@@ -27,4 +28,4 @@ data class UserLocation(
     @Expose
     val stateCode: String = ""
 
-)
+): Serializable

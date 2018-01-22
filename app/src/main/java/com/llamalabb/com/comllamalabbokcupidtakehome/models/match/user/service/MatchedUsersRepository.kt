@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import android.net.NetworkInfo
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-
+import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.service.MatchedUsersRepository.likedUsersCache
 
 
 /**
@@ -19,7 +19,7 @@ import android.net.ConnectivityManager
 object MatchedUsersRepository {
 
     var usersCache = ArrayList<MatchedUser>()
-    var likedUsersCache = HashMap<String, Boolean>()
+    var likedUsersCache = HashSet<String>()
     private val userDao = MyApp.database.userDao()
 
     init{
@@ -47,11 +47,22 @@ object MatchedUsersRepository {
                 .subscribe()
     }
 
+    fun deleteLikedUser(user: MatchedUser){
+        likedUsersCache.remove(user.userId)
+        Observable.fromCallable{ userDao.deleteUser(user) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe()
+    }
+
+    fun isUserLiked(userId: String): Boolean = likedUsersCache.contains(userId)
+
+
     fun getLikedUsersFromDb() = userDao.getUsers().filter{ it.isNotEmpty() }
             .toObservable()
 
     fun saveLikedUser(user: MatchedUser){
-        likedUsersCache.put(user.userId, user.liked)
+        likedUsersCache.add(user.userId)
         Observable.fromCallable { userDao.insert(user) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
@@ -62,6 +73,6 @@ object MatchedUsersRepository {
         getLikedUsersFromDb()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .subscribe{ it.forEach { likedUsersCache.put(it.userId, it.liked) } }
+                .subscribe{ it.forEach { likedUsersCache.add(it.userId) } }
     }
 }

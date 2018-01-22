@@ -21,7 +21,7 @@ class BlendTabPresenter(val view: BlendTabContract.SearchTabView)
 
     fun Int.formatMatchPercent() = "%.0f".format(this.toDouble()*.01)
 
-    override fun onBindMatchItemAtPosition(position: Int, searchItem: BlendTabContract.SearchItem) {
+    override fun onBindMatchItemAtPosition(position: Int, searchItem: BlendTabContract.SearchItemView) {
         with(MatchedUsersRepository.usersCache[position]) {
             val isLiked = MatchedUsersRepository.likedUsersCache.contains(userId)
             val quickInfo = "$age • ${location.cityName}, ${location.stateCode}"
@@ -35,9 +35,17 @@ class BlendTabPresenter(val view: BlendTabContract.SearchTabView)
     }
 
     override fun handleSearchItemClick(index: Int) {
-        MatchedUsersRepository.usersCache[index].liked = true
-        MatchedUsersRepository.saveLikedUser(MatchedUsersRepository.usersCache[index])
-        Bus.send(BusEvent.UpdateLikedTab)
+        with(MatchedUsersRepository){
+            val user = usersCache[index]
+
+            if(isUserLiked(user.userId)){
+                deleteLikedUser(user)
+            } else {
+                saveLikedUser(MatchedUsersRepository.usersCache[index])
+            }
+            Bus.send(BusEvent.UpdateLikedTab)
+            view.refreshList()
+        }
     }
 
     override fun getSearchItemCount(): Int = MatchedUsersRepository.usersCache.size

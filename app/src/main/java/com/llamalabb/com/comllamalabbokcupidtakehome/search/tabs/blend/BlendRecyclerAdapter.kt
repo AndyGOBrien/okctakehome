@@ -22,10 +22,7 @@ class BlendRecyclerAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         presenter.onBindMatchItemAtPosition(position, holder)
-        holder.cardView.setOnClickListener {
-            presenter.handleSearchItemClick(position)
-            holder.cardView.cardBackgroundColor = holder.likedColor
-        }
+        holder.cardView.setOnClickListener { presenter.handleSearchItemClick(position) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -36,7 +33,7 @@ class BlendRecyclerAdapter(private val context: Context,
     override fun getItemCount(): Int = presenter.getSearchItemCount()
 
     class SearchViewHolder(private val context: Context, view: View)
-        : RecyclerView.ViewHolder(view), BlendTabContract.SearchItem {
+        : RecyclerView.ViewHolder(view), BlendTabContract.SearchItemView {
 
         val likedColor = ContextCompat.getColorStateList(context, R.color.search_card_liked_background)
         val notLikedColor = ContextCompat.getColorStateList(context, R.color.search_card_background)

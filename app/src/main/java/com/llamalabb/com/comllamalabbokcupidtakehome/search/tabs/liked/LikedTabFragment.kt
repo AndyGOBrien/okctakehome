@@ -1,5 +1,6 @@
 package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.liked
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -8,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.llamalabb.com.comllamalabbokcupidtakehome.R
+import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
+import com.llamalabb.com.comllamalabbokcupidtakehome.profile.ProfileActivity
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.EqualSpaceItemDecorator
 import com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.blend.LikedTabPresenter
 import kotlinx.android.synthetic.main.fragment_search_tab.view.*
@@ -16,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_search_tab.view.*
  * Created by andyg on 1/7/2018.
  */
 class LikedTabFragment : Fragment(), LikedTabContract.LikedTabView {
+
     override lateinit var presenter: LikedTabContract.TabPresenter
     private var page: Int = 0
     private var title: String = ""
@@ -46,6 +50,12 @@ class LikedTabFragment : Fragment(), LikedTabContract.LikedTabView {
 
     override fun refreshList(){
         recyclerView.adapter.notifyDataSetChanged()
+    }
+
+    override fun showProfile(user: MatchedUser) {
+        val intent = Intent(context, ProfileActivity::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
     }
 
     companion object {

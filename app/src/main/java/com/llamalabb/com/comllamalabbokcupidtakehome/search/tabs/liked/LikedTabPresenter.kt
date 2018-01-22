@@ -52,7 +52,9 @@ class LikedTabPresenter(val view: LikedTabContract.LikedTabView)
         }
     }
 
-    override fun handleSearchItemClick(index: Int) {}
+    override fun handleSearchItemClick(index: Int) {
+        view.showProfile(likedUsers[index])
+    }
 
     override fun getSearchItemCount(): Int = likedUsers.size
 

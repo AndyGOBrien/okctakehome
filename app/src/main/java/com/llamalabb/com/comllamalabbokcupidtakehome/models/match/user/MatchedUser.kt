@@ -7,6 +7,7 @@ import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.photo.MatchedPhotoInfo
+import java.io.Serializable
 
 
 /**
@@ -129,4 +130,4 @@ data class MatchedUser(
         @SerializedName("orientation_tags")
         @Expose
         var orientationTags: List<String> = emptyList()
-)
+) : Serializable

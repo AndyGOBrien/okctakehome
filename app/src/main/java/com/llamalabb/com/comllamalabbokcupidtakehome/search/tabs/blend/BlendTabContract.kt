@@ -18,12 +18,12 @@ class BlendTabContract {
     }
 
     interface TabAdapterPresenter{
-        fun onBindMatchItemAtPosition(position: Int, searchItem: SearchItem)
+        fun onBindMatchItemAtPosition(position: Int, searchItem: SearchItemView)
         fun handleSearchItemClick(index: Int)
         fun getSearchItemCount(): Int
     }
 
-    interface SearchItem{
+    interface SearchItemView {
         fun displayQuickInfo(info: String)
         fun displayUsername(username: String)
         fun displayPhoto(url: String, x: Int, y: Int)

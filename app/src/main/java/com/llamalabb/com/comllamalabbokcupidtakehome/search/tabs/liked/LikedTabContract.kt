@@ -2,6 +2,7 @@ package com.llamalabb.com.comllamalabbokcupidtakehome.search.tabs.liked
 
 import com.llamalabb.com.comllamalabbokcupidtakehome.base.BasePresenter
 import com.llamalabb.com.comllamalabbokcupidtakehome.base.BaseView
+import com.llamalabb.com.comllamalabbokcupidtakehome.models.match.user.MatchedUser
 
 
 /**
@@ -11,6 +12,7 @@ class LikedTabContract {
     interface LikedTabView : BaseView<TabPresenter> {
         fun showSearchList()
         fun refreshList()
+        fun showProfile(user: MatchedUser)
     }
 
     interface TabPresenter: BasePresenter, TabAdapterPresenter {
